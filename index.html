@@ -14,20 +14,20 @@
 
     <input type="text" name="valor" id="valor">
 
-    <select name="parc" id="parc">
-        <option value="1">1X - Crédito normal</option>
-        <option value="2">2X</option>
-        <option value="3">3X</option>
-        <option value="4">4X</option>
-        <option value="5">5X</option>
-        <option value="6">6X</option>
+    <select name="meio" id="meio" onchange="meiopagamento()">
+        <option></option>
+        <option value="s" >Sumup</option>
+        <option value="m">Mercado Pago</option>
+
       </select>
 
-    <button onclick="calcular_parc()">Mostrar quando receber</button>
+      <div id="demo"></div>
 
-    <div id="demo">
+      <div id="show"></div>
 
-    </div>
+
+
+
     
     <script src="js/calcula.js"></script>
 </body>
