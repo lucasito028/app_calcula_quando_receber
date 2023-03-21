@@ -42,27 +42,28 @@ function como(){
                 case "s":
                     document.getElementById("show").innerHTML = 
                     "<select name="+"parc"+" id="+"parc"+">"+
-                    +"<option value="+"1"+">1X - Crédito normal</option>"+
-                    +"<option value="+"2"+">2X</option>"+
-                    +"<option value="+"3"+">3X</option>"+
-                    +"<option value="+"4"+">4X</option>"+
-                    +"<option value="+"5"+">5X</option>"+
-                    +"<option value="+"6"+">6X</option>"+
-                  +"</select>"+
-                  +"<button onclick="+"calcular_sum_credito"+">Mostrar quando receber</button>"
+                    "<option value= 1 >1X - Á vista</option>"+
+                    "<option value= 2 >2X</option>"+
+                    "<option value= 3 >3X</option>"+
+                    "<option value= 4 >4X</option>"+
+                    "<option value= 5 >5X</option>"+
+                    "<option value= 6 >6X</option>"+
+                    "</select>"+
+                    "<button onclick="+"calcular_sum_credito()"+">Calcular</button>";
 
                   break;
                 case "m":
                     document.getElementById("show").innerHTML = 
                     "<select name="+"parc"+" id="+"parc"+">"+
-                    +"<option value="+"1"+">1X - Crédito normal</option>"+
-                    +"<option value="+"2"+">2X</option>"+
-                    +"<option value="+"3"+">3X</option>"+
-                    +"<option value="+"4"+">4X</option>"+
-                    +"<option value="+"5"+">5X</option>"+
-                    +"<option value="+"6"+">6X</option>"+
-                  +"</select>"+
-                  +"<button onclick="+"calcular_MCP_credito()"+">Mostrar quando receber</button>"
+                    "<option value= 1 >1X - Á vista</option>"+
+                    "<option value= 2 >2X</option>"+
+                    "<option value= 3 >3X</option>"+
+                    "<option value= 4 >4X</option>"+
+                    "<option value= 5 >5X</option>"+
+                    "<option value= 6 >6X</option>"+
+                    "</select>" +
+                    "<button onclick="+"calcular_MCP_credito()"+">Calcular</button>";
+                
                   break;
               }
 
@@ -71,11 +72,11 @@ function como(){
         case "D":
 
             switch (meio) {
-                case "s":
-                    console.log("Arroz")
+                case "s":document.getElementById("show").innerHTML = 
+                    "<button onclick="+"calcular_sum_credito()"+">Calcular</button>";
                   break;
-                case "m":
-                   console.log("Pao")
+                case "m":document.getElementById("show").innerHTML = 
+                    "<button onclick="+"calcular_MCP_credito()"+">Calcular</button>";
                   break;
               }
 
@@ -88,14 +89,21 @@ function como(){
 
 function calcular_sum_credito(){
 
-    //Valores coletados
+    //Todos os selects
+    /*var select = document.getElementById('meio');
+    var meio = select.options[select.selectedIndex].value;*/
+
+    var select2 = document.getElementById('pag');
+    var pag = select2.options[select2.selectedIndex].value;
 
     var select1 = document.getElementById('parc');
     var parc = select1.options[select1.selectedIndex].value;
 
+    //Valores
     var data = document.getElementById("data").value;
     var valor = document.getElementById("valor").value;
 
+    
     //Valores transformados
     data = new Date(data);
 
@@ -130,13 +138,20 @@ function calcular_sum_credito(){
 
 function calcular_MCP_credito(){
 
-    //Valores coletados
+    //Todos os selects
+    /*var select = document.getElementById('meio');
+    var meio = select.options[select.selectedIndex].value;*/
+
+    var select2 = document.getElementById('pag');
+    var pag = select2.options[select2.selectedIndex].value;
 
     var select1 = document.getElementById('parc');
     var parc = select1.options[select1.selectedIndex].value;
 
+    //Valores
     var data = document.getElementById("data").value;
     var valor = document.getElementById("valor").value;
+
 
     //Valores transformados
     data = new Date(data);
@@ -159,7 +174,7 @@ function calcular_MCP_credito(){
     const date = new Date(y, m, d);
     
 
-    taxas = (taxas + 0.0430) * 100;
+    taxas = (taxas + 0.0459) * 100;
 
    console.log(date.toLocaleDateString());
    
