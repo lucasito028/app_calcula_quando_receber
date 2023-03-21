@@ -1,33 +1,33 @@
-function mostrar(){
-    var data = document.getElementById("data").value;
-    data = new Date(data);
-    document.getElementById("demo").innerHTML = data.getDate();
-}
 
-function parcelado(){
-    
+function calcular_parc(){
+
     //Valores coletados
+    var select = document.getElementById('parc');
+    var parc = select.options[select.selectedIndex].value;
+
     var data = document.getElementById("data").value;
+    var valor = document.getElementById("valor").value;
 
     //Valores transformados
-    var parc = 4;
-    var valor = 120
-    var d = 25;
-    let i = 0;
-
-    valor = valor / parc;
+    var d = 19;
+    var taxas = 1.03;
+    valor = (valor / parc) / taxas;
+    taxas = taxas - 1.03;
 
     d = d + 2;
 
-    while(i < parc){
+    for(var i = 0; i < parc; i++){
     d = d + 30;
-   
-   const date = new Date(2017, 5, d);
+    
+    taxas = (taxas + 0.03) * 100
+
+    const date = new Date(2017, 2, d);
    
    console.log(date.toLocaleDateString());
    
    console.log(valor);
-   
-   i++;
+   console.log(taxas);
+
 }
+
 }
