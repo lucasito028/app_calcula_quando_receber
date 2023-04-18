@@ -1,24 +1,29 @@
 //Parte do plataforma de pagamento
+
 function meiopagamento(){
-    var select = document.getElementById('meio');
+    var select = document.getElementById("meio");
     var meio = select.options[select.selectedIndex].value;
 
     switch (meio) {
         case "s":
-            document.getElementById("demo").innerHTML = 
+        document.getElementById("demo").innerHTML = 
         `<select name="pag" id="pag" onchange="como()">
         <option></option>
         <option value="C">Crédito</option>
         <option value="D">Débito</option>
         </select>`;
+
           break;
+
         case "m":
-            document.getElementById("demo").innerHTML = 
-            `<select name="pag" id="pag" onchange="como()">
+        document.getElementById("demo").innerHTML = 
+
+        `<select name="pag" id="pag" onchange="como()">
         <option></option>
         <option value="C">Crédito</option>
         <option value="D">Débito</option>
         </select>`;
+
           break;
       }
 
@@ -137,49 +142,48 @@ function calcular_sumup(){
 
             var taxas = 1.0430;
 
-            var data = new Date(y, m, d + 3);
-
             valor = valor / parc;
             taxas = taxas - 1;
     
-            document.getElementById("f-table").innerHTML=`<tr id="p`+p+`"></tr><tr id="p`+p+1+`"></tr>`;
+            document.getElementById("f-table").innerHTML=
+            `<tr id="p`+p+`"></tr><tr id="p`+p+1+`"></tr>`;
 
             for(var i = 0; i < parc; i++){
 
-            data = new Date(y, m, d + 30);
-            var s = data.getDay(d);
-            var dia_semana;
-            
-            taxas = (taxas + 0.0430) * 100;
+                data = new Date(y, m, d + 30);
+                var s = data.getDay(d);
+                var dia_semana;
+                
+                taxas = (taxas + 0.0430) * 100;
 
-            switch(s){
-                case 0:
-                    d = d + 1;
-                    dia_semana = "Segunda";
-                    break;
-                case 1:
-                    dia_semana = "Segunda";
-                    break;
-                case 2:
-                    dia_semana = "Terça";
-                    break;
-                case 3:
-                    dia_semana = "Quarta";
-                    break;
-                case 4:
-                    dia_semana = "Quinta";
-                    break;
-                case 5:
-                    dia_semana = "Sexta";
-                    break;
-                case 6:
-                    d = d + 2;
-                    dia_semana = "Segunda";
-            }
+                switch(s){
+                    case 0:
+                        d = d + 1;
+                        dia_semana = "Segunda";
+                        break;
+                    case 1:
+                        dia_semana = "Segunda";
+                        break;
+                    case 2:
+                        dia_semana = "Terça";
+                        break;
+                    case 3:
+                        dia_semana = "Quarta";
+                        break;
+                    case 4:
+                        dia_semana = "Quinta";
+                        break;
+                    case 5:
+                        dia_semana = "Sexta";
+                        break;
+                    case 6:
+                        d = d + 2;
+                        dia_semana = "Segunda";
+                }
 
-            taxas = taxas / 100;
+                taxas = taxas / 100;
 
-            p = i + 1;
+                p = i + 1;
 
     }
             break;
@@ -190,8 +194,8 @@ function calcular_sumup(){
 
             valor = valor / taxas;
 
-            const data = new Date(y, m, d + 2);
-            var s = data.getDay(d);
+            var data = new Date(y, m, d + 2);
+            var s = data.getDay();
             var dia_semana;
 
             taxas = (taxas - 1 ) * 100;
@@ -199,7 +203,7 @@ function calcular_sumup(){
 
             switch(s){
                 case 0:
-                    d = d + 1;
+                    var data = new Date(y, m, d + 2);
                     dia_semana = "Segunda";
                     break;
                 case 1:
@@ -218,7 +222,7 @@ function calcular_sumup(){
                     dia_semana = "Sexta";
                     break;
                 case 6:
-                    d = d + 2;
+                    var data = new Date(y, m, d + 3);
                     dia_semana = "Segunda";
             }
 
