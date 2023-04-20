@@ -138,7 +138,6 @@ function calcular_sumup(){
 
             var select1 = document.getElementById('parc');
             var parc = select1.options[select1.selectedIndex].value;
-            var p = 0;
 
             var taxas = 1.0430;
 
@@ -146,7 +145,7 @@ function calcular_sumup(){
             taxas = taxas - 1;
     
             document.getElementById("f-table").innerHTML=
-            `<tr id="p`+p+`"></tr><tr id="p`+p+1+`"></tr>`;
+            `<tr id="p0"></tr>`;
 
             for(var i = 0; i < parc; i++){
 
@@ -185,6 +184,17 @@ function calcular_sumup(){
 
                 p = i + 1;
 
+                document.getElementById("p"+i).innerHTML=
+                "<th>Crédito Parcelado "+i+"X"+"</th>"+
+                "<th>"+d+"/"+m+"/"+y+"</th>"+
+                "<th>"+dia_semana+"</th>"+
+                "<th>"+valor.toFixed(2)+"</th>"+
+                "<th>"+taxas.toFixed(2)+"</th>";
+
+                document.getElementById("f-table").innerHTML=
+                `<tr id="p0"></tr>`;
+
+
     }
             break;
         case "D":
@@ -195,6 +205,9 @@ function calcular_sumup(){
             valor = valor / taxas;
 
             var data = new Date(y, m, d + 2);
+            var d = data.getDate();
+            var m = data.getMonth();
+            var y = data.getFullYear();
             var s = data.getDay();
             var dia_semana;
 
@@ -203,7 +216,10 @@ function calcular_sumup(){
 
             switch(s){
                 case 0:
-                    var data = new Date(y, m, d + 2);
+                    var data = new Date(y, m, d + 1);
+                    var d = data.getDate();
+                    var m = data.getMonth();
+                    var y = data.getFullYear();
                     dia_semana = "Segunda";
                     break;
                 case 1:
@@ -222,7 +238,10 @@ function calcular_sumup(){
                     dia_semana = "Sexta";
                     break;
                 case 6:
-                    var data = new Date(y, m, d + 3);
+                    var data = new Date(y, m, d + 2);
+                    var d = data.getDate();
+                    var m = data.getMonth();
+                    var y = data.getFullYear();
                     dia_semana = "Segunda";
             }
 
@@ -230,10 +249,10 @@ function calcular_sumup(){
             document.getElementById("f-table").innerHTML=
             "<tr>"+
                 "<th>Débito</th>"+
-                "<th>"+data+"</th>"+
+                "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
-                "<th>"+valor+"</th>"+
-                "<th>"+taxas+"</th>"+
+                "<th>"+valor.toFixed(2)+"</th>"+
+                "<th>"+taxas.toFixed(2)+"</th>"+
             "</tr>";
 
             break;
