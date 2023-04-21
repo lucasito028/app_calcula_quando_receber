@@ -145,19 +145,25 @@ function calcular_sumup(){
             taxas = taxas - 1;
     
             document.getElementById("f-table").innerHTML=
-            `<tr id="p0"></tr>`;
+            `<tr id="p1"></tr>`;
 
-            for(var i = 0; i < parc; i++){
+            for(var i = 1; i <= parc; i++){
 
-                data = new Date(y, m, d + 30);
-                var s = data.getDay(d);
+                data = new Date(y, m, d + 31);
+                var d = data.getDate();
+                var m = data.getMonth();
+                var y = data.getFullYear();
+                var s = data.getDay();
                 var dia_semana;
                 
                 taxas = (taxas + 0.0430) * 100;
 
                 switch(s){
                     case 0:
-                        d = d + 1;
+                        var data = new Date(y, m, d + 1);
+                        var d = data.getDate();
+                        var m = data.getMonth();
+                        var y = data.getFullYear();
                         dia_semana = "Segunda";
                         break;
                     case 1:
@@ -176,7 +182,10 @@ function calcular_sumup(){
                         dia_semana = "Sexta";
                         break;
                     case 6:
-                        d = d + 2;
+                        var data = new Date(y, m, d + 2);
+                        var d = data.getDate();
+                        var m = data.getMonth();
+                        var y = data.getFullYear();
                         dia_semana = "Segunda";
                 }
 
@@ -184,15 +193,14 @@ function calcular_sumup(){
 
                 p = i + 1;
 
-                document.getElementById("p"+i).innerHTML=
-                "<th>Crédito Parcelado "+i+"X"+"</th>"+
+                var test = document.createElement("tr");
+                test.innerHTML = "<th>Crédito Parcelado "+i+"X"+"</th>"+
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
                 "<th>"+valor.toFixed(2)+"</th>"+
                 "<th>"+taxas.toFixed(2)+"</th>";
 
-                document.getElementById("f-table").innerHTML=
-                `<tr id="p0"></tr>`;
+                document.getElementById("f-table").appendChild(test);
 
 
     }
@@ -252,7 +260,7 @@ function calcular_sumup(){
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
                 "<th>"+valor.toFixed(2)+"</th>"+
-                "<th>"+taxas.toFixed(2)+"</th>"+
+                "<th>"+taxas.toFixed(1)+"%</th>"+
             "</tr>";
 
             break;
