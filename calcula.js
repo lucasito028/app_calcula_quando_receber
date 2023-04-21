@@ -117,19 +117,19 @@ function calcular_sumup(){
 
     //Essa parte ela vai gerar um html de tabela
     document.getElementById("table").innerHTML=
-    `<table class="fl-table">
-    <thead>
-    <tr>
-    <th>Meio de pagamento</th>
-    <th>Dia que vai receber</th>
-    <th>Dia da semana</th>
-    <th>Valor recebido</th>
-    <th>Taxas</th>
-    </tr>
-    </thead>
-    <tbody id="f-table">
-    </tbody>
-    </table>`;
+        `<table class="fl-table">
+        <thead>
+        <tr>
+        <th>Meio de pagamento</th>
+        <th>Dia que vai receber</th>
+        <th>Dia da semana</th>
+        <th>Valor recebido</th>
+        <th>Taxas</th>
+        </tr>
+        </thead>
+        <tbody id="f-table">
+        </tbody>
+        </table>`;
 
     
 
@@ -139,13 +139,10 @@ function calcular_sumup(){
             var select1 = document.getElementById('parc');
             var parc = select1.options[select1.selectedIndex].value;
 
-            var taxas = 1.0430;
+            var taxas = 1.06;
 
-            valor = valor / parc;
+            valor = (valor / parc) / taxas;
             taxas = taxas - 1;
-    
-            document.getElementById("f-table").innerHTML=
-            `<tr id="p1"></tr>`;
 
             for(var i = 1; i <= parc; i++){
 
@@ -156,7 +153,7 @@ function calcular_sumup(){
                 var s = data.getDay();
                 var dia_semana;
                 
-                taxas = (taxas + 0.0430) * 100;
+                taxas = taxas * 100;
 
                 switch(s){
                     case 0:
@@ -189,8 +186,6 @@ function calcular_sumup(){
                         dia_semana = "Segunda";
                 }
 
-                taxas = taxas / 100;
-
                 p = i + 1;
 
                 var test = document.createElement("tr");
@@ -198,10 +193,11 @@ function calcular_sumup(){
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
                 "<th>"+valor.toFixed(2)+"</th>"+
-                "<th>"+taxas.toFixed(2)+"</th>";
+                "<th>"+taxas.toFixed(0)+"%</th>";
 
                 document.getElementById("f-table").appendChild(test);
 
+                taxas = taxas / 100;
 
     }
             break;
