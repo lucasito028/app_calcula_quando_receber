@@ -139,10 +139,10 @@ function calcular_sumup(){
             var select1 = document.getElementById('parc');
             var parc = select1.options[select1.selectedIndex].value;
 
-            var taxas = 1.06;
+            var taxas = 1.0090 + ((parc - 1) / 100);
+            var tx_total = 0.9;
 
             valor = (valor / parc) / taxas;
-            taxas = taxas - 1;
 
             for(var i = 1; i <= parc; i++){
 
@@ -153,7 +153,6 @@ function calcular_sumup(){
                 var s = data.getDay();
                 var dia_semana;
                 
-                taxas = taxas * 100;
 
                 switch(s){
                     case 0:
@@ -192,12 +191,12 @@ function calcular_sumup(){
                 test.innerHTML = "<th>Crédito Parcelado "+i+"X"+"</th>"+
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
-                "<th>"+valor.toFixed(2)+"</th>"+
-                "<th>"+taxas.toFixed(0)+"%</th>";
+                "<th>"+valor.toFixed(2)+" R$</th>"+
+                "<th>"+tx_total+"%</th>"; 
 
                 document.getElementById("f-table").appendChild(test);
 
-                taxas = taxas / 100;
+                tx_total = tx_total + 1;
 
     }
             break;
