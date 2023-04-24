@@ -140,7 +140,7 @@ function calcular_sumup(){
             var parc = select1.options[select1.selectedIndex].value;
 
             var taxas = 1.0090 + ((parc - 1) / 100);
-            var tx_total = 0.9;
+            var tx_total = 0.9+ (parc * 1);
 
             valor = (valor / parc) / taxas;
 
@@ -185,9 +185,10 @@ function calcular_sumup(){
                         dia_semana = "Segunda";
                 }
 
-                p = i + 1;
 
                 var test = document.createElement("tr");
+                test.setAttribute("name", "banana");
+
                 test.innerHTML = "<th>Crédito Parcelado "+i+"X"+"</th>"+
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
@@ -196,7 +197,6 @@ function calcular_sumup(){
 
                 document.getElementById("f-table").appendChild(test);
 
-                tx_total = tx_total + 1;
 
     }
             break;
@@ -313,25 +313,27 @@ function calcular_MCP(){
             var select1 = document.getElementById('parc');
             var parc = select1.options[select1.selectedIndex].value;
 
-            d = d + 2;
-            var taxas = 1.0430;
+            var taxas = 1.0360 + ((parc - 1) / 100);
+            var tx_total = 0.9 + (parc * 1);
 
+            valor = (valor / parc) / taxas;
 
-            valor = valor / parc;
-            taxas = taxas - 1;
+            for(var i = 1; i <= parc; i++){
 
-
-            for(var i = 0; i < parc; i++){
-
-                d = d + 30;
-                const date = new Date(y, m, d);
+                data = new Date(y, m, d + 31);
+                var d = data.getDate();
+                var m = data.getMonth();
+                var y = data.getFullYear();
+                var s = data.getDay();
+                var dia_semana;
                 
-                taxas = (taxas + 0.0430) * 100;
-
 
                 switch(s){
                     case 0:
-                        d = d + 1;
+                        var data = new Date(y, m, d + 1);
+                        var d = data.getDate();
+                        var m = data.getMonth();
+                        var y = data.getFullYear();
                         dia_semana = "Segunda";
                         break;
                     case 1:
@@ -350,28 +352,51 @@ function calcular_MCP(){
                         dia_semana = "Sexta";
                         break;
                     case 6:
-                        d = d + 2;
+                        var data = new Date(y, m, d + 2);
+                        var d = data.getDate();
+                        var m = data.getMonth();
+                        var y = data.getFullYear();
                         dia_semana = "Segunda";
                 }
 
-                taxas = taxas / 100
+
+                var test = document.createElement("tr");
+                test.setAttribute("name", "banana");
+
+                test.innerHTML = "<th>Crédito Parcelado "+i+"X"+"</th>"+
+                "<th>"+d+"/"+m+"/"+y+"</th>"+
+                "<th>"+dia_semana+"</th>"+
+                "<th>"+valor.toFixed(2)+" R$</th>"+
+                "<th>"+tx_total+"%</th>"; 
+
+                document.getElementById("f-table").appendChild(test);
+
 
     }
             break;
         case "D":
-            d = d + 1;
+
             var taxas = 1.0199;
 
 
             valor = valor / taxas;
 
-            const date = new Date(y, m, d);
+            var data = new Date(y, m, d + 2);
+            var d = data.getDate();
+            var m = data.getMonth();
+            var y = data.getFullYear();
+            var s = data.getDay();
+            var dia_semana;
 
             taxas = (taxas - 1 ) * 100;
 
+
             switch(s){
                 case 0:
-                    d = d + 1;
+                    var data = new Date(y, m, d + 1);
+                    var d = data.getDate();
+                    var m = data.getMonth();
+                    var y = data.getFullYear();
                     dia_semana = "Segunda";
                     break;
                 case 1:
@@ -390,24 +415,23 @@ function calcular_MCP(){
                     dia_semana = "Sexta";
                     break;
                 case 6:
-                    d = d + 2;
+                    var data = new Date(y, m, d + 2);
+                    var d = data.getDate();
+                    var m = data.getMonth();
+                    var y = data.getFullYear();
                     dia_semana = "Segunda";
             }
 
+
             document.getElementById("f-table").innerHTML=
             "<tr>"+
-                "<th>Débito</th>"
-                "<th>"+date+"</th>"
-                "<th>"+dia_semana+"</th>"
-                "<th>"+valor+"</th>"
-                "<th>"+taxas+"</th>"
+                "<th>Débito</th>"+
+                "<th>"+d+"/"+m+"/"+y+"</th>"+
+                "<th>"+dia_semana+"</th>"+
+                "<th>"+valor.toFixed(2)+"</th>"+
+                "<th>"+taxas.toFixed(1)+"%</th>"+
             "</tr>";
 
-            /*<th>Meio de pagamento</th>
-    <th>Dia que vai receber</th>
-    <th>Dia da semana</th>
-    <th>Valor recebido</th>
-    <th>Taxas</th>*/
             break;
     }
 
