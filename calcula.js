@@ -1,5 +1,6 @@
 //Parte do plataforma de pagamento
 
+
 function meiopagamento(){
     var select = document.getElementById("meio");
     var meio = select.options[select.selectedIndex].value;
@@ -30,7 +31,6 @@ function meiopagamento(){
       
       
 }
-
 
 function como(){
     var select = document.getElementById('meio');
@@ -90,6 +90,7 @@ function como(){
       }
 
 }
+
 
 
 function calcular_sumup(){
@@ -264,12 +265,11 @@ function calcular_sumup(){
 
 }
 
-
 function calcular_MCP(){
 
     
-    /* var select = document.getElementById('meio');
-    var meio = select.options[select.selectedIndex].value ;*/
+    /*var select = document.getElementById('meio');
+    var meio = select.options[select.selectedIndex].value;*/
 
     //Todos os Selects
     var select2 = document.getElementById('pag');
@@ -313,42 +313,11 @@ function calcular_MCP(){
         case "C":
             var select1 = document.getElementById('parc');
             var parc = select1.options[select1.selectedIndex].value;
-            var co;
 
-            /*switch(parc){
-                    case 1:
-                        co = 0;
-                    break;
-                    case 2:
-                        co = 4.59;
-                        break;
-                    case 3:
-                        co = 5.97;
-                        break;
-                    case 4:
-                        co = 7.33;
-                        break;
-                    case 5:
-                        co = 8.33;
-                        break;
-                    case 6:
-                        co = 9.96;
-                        break;
-            }*/
+            var taxas = 1.0360 + ((parc - 1) / 100);
+            var tx_total = 0.9 + (parc * 1);
 
-            if(parc == 1){co = 0;}
-            if(parc == 2){co = 0.0459;}
-            if(parc == 3){co = 0.0597;}
-            if(parc == 4){co = 0.0733;}
-            if(parc == 5){co = 0.0833;}
-            if(parc == 6){co = 0.0996;}
-
-            var tx_total = 3.6 + (co*100);
-            
-            var taxas = 1.0360 + co;
-
-            valor = valor / parc;
-            valor = valor / taxas;
+            valor = (valor / parc) / taxas;
 
             for(var i = 1; i <= parc; i++){
 
@@ -399,7 +368,7 @@ function calcular_MCP(){
                 "<th>"+d+"/"+m+"/"+y+"</th>"+
                 "<th>"+dia_semana+"</th>"+
                 "<th>"+valor.toFixed(2)+" R$</th>"+
-                "<th>"+tx_total.toFixed(2)+"%</th>"; 
+                "<th>"+tx_total+"%</th>"; 
 
                 document.getElementById("f-table").appendChild(test);
 

@@ -5,24 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
     <title>Calculator parcelas</title>
 </head>
 <body>
 
-    <input type="date" name="data" id="data">
+    <div class="fade">
+        <div class="modal">
+            <div class="modal-header">
 
-    <input type="text" name="valor" id="valor">
+                <div class="modal-son">
+                    <input type="date" name="data" id="data" class="b k">
+                </div>
 
-    <!--Select do meio de pagamento-->
-    <select name="meio" id="meio" onchange="meiopagamento()">
+                <div class="modal-son">
+                    <input type="number" name="valor" id="valor" class="b k">
+                </div>
 
-        <option></option>
-        <option value="s">Sumup</option>
-        <option value="m">Mercado Pago</option>
+                <div class="modal-son">
+                    <select name="meio" id="meio" onchange="meiopagamento()" multiple>
 
-      </select>
+                        <option value="s" style="background-image:url(img/mcp.png);">
+                        </option>
+                        <option value="m" style="background-image:url(img/smp.png);">
+                        </option>
+                
+                    </select>
+
+                </div>
+            </div>
+            <div class="modal-header">
+                <div class="modal-son">
+                    <input type="date" name="" class="b k" id="">
+                </div>
+                <div class="modal-son">
+                    <input type="number" name="" class="b k" id="">
+                </div>
+                <div class="modal-son">
+                    <h1>Sumup Parcelado 4x 200R$</h1>
+                    <button class="b k cadastrar">Calcular</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
       <div id="demo"></div>
 
